@@ -19,7 +19,9 @@ def GoString(s):
     return go_string(c_char_p(u), len(u))
 
 
-load_dotenv('.env')
+print(os.environ['HOME'])
+HOME = os.environ['HOME']
+load_dotenv(HOME+'/.env')
 SECRET_KEY = os.environ["SECRET_KEY"]
 API_TOKEN = os.environ["API_TOKEN"]
 UUID = os.environ["UUID"]
