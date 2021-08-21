@@ -57,7 +57,7 @@ if __name__ == '__host__':
         myreader = CardReader()
         detectedID = myreader.read_id()
         # NFCの入力を検知したらスピーカーから通知音を出す
-        subprocess.call("aplay ic.wav" ,shell=True)
+        subprocess.call("aplay notify.wav" ,shell=True)
         if ismyID(detectedID):
         # セサミ3インスタンスの作成
             mySesame3 = MySesame3()
