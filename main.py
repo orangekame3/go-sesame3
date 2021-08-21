@@ -6,8 +6,8 @@ from Crypto.Cipher import AES
 import struct
 import os
 from dotenv import load_dotenv
-# import nfc_connect
-# import subprocess
+import nfc_connect
+import subprocess
 
 # 環境変数の読み込みにはpython-dotenvを使用している
 # 事故が起きないように.envファイルはhomeディレクトリ配下に置く
@@ -48,30 +48,20 @@ class MySesame3:
         self.lib.executeSesame3.restype=c_char_p
         self.lib.executeSesame3(self.sign.encode('utf-8'),self.api.encode('utf-8'),self.uuid.encode('utf-8'))
 
-# ANDROIDO =b'01407fc7d137b660'
 def ismyID(id):
     return bool(id==ANDROIDO or id ==SUICA)
 
-detectedID  =b'01010112be1aff08'
-
-# if __name__ == '__host__':
-#      while True:
-#         # nfcpyによるNFC入力待機
-#         #detectedID = nfc_connect.detect()
-#         # NFCの入力を検知したらスピーカーから通知音を出す
-#         #subprocess.call("aplay ic.wav" ,shell=True)
-#         if ismyID(detectedID):
-#         # セサミ3インスタンスの作成
-#             mySesame3 = MySesame3()
-#         # secret_keyを暗号化
-#             mySesame3.encyptmyKey()
-#         # 施錠と解錠の実行
-#             mySesame3.lockOrunlock()
-
-mySesame3 = MySesame3()
-# secret_keyを暗号化
-mySesame3.encyptmyKey()
-# 施錠と解錠の実行
-mySesame3.lockOrunlock()
-
+if __name__ == '__host__':
+     while True:
+        # nfcpyによるNFC入力待機
+        detectedID = nfc_connect.detect()
+        # NFCの入力を検知したらスピーカーから通知音を出す
+        subprocess.call("aplay ic.wav" ,shell=True)
+        if ismyID(detectedID):
+        # セサミ3インスタンスの作成
+            mySesame3 = MySesame3()
+        # secret_keyを暗号化
+            mySesame3.encyptmyKey()
+        # 施錠と解錠の実行
+            mySesame3.lockOrunlock()
             
