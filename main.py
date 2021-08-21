@@ -6,8 +6,8 @@ from Crypto.Cipher import AES
 import struct
 import os
 from dotenv import load_dotenv
-import nfc_connect
 import subprocess
+from nfc_connect import CardReader
 
 # 環境変数の読み込みにはpython-dotenvを使用している
 # 事故が起きないように.envファイルはhomeディレクトリ配下に置く
@@ -54,7 +54,8 @@ def ismyID(id):
 if __name__ == '__host__':
      while True:
         # nfcpyによるNFC入力待機
-        detectedID = nfc_connect.detect()
+        myreader = CardReader()
+        detectedID = myreader.read_id()
         # NFCの入力を検知したらスピーカーから通知音を出す
         subprocess.call("aplay ic.wav" ,shell=True)
         if ismyID(detectedID):
