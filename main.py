@@ -8,7 +8,7 @@ import struct
 import os
 from dotenv import load_dotenv
 #import nfc_connect
-#import subprocess
+#import subprocessa
 
 class go_string(Structure):
     _fields_ = [("p", c_char_p),("n", c_int)]
