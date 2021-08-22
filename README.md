@@ -1,4 +1,4 @@
-# go-sesame3
+# gopy-sesame3
 セサミ３のAPIをたたくクライアントアプリ
 
 cgoを使ってpythonからgolangを呼び出しています。
