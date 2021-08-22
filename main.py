@@ -8,7 +8,7 @@ from time import sleep
 import os
 from dotenv import load_dotenv
 import subprocess
-from nfc_connect import CardReader
+from nfcreader import CardReader
 
 # 環境変数の読み込みにはpython-dotenvを使用している
 # 事故が起きないように.envファイルはhomeディレクトリもしくは相対パスで指定する

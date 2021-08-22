@@ -4,10 +4,9 @@ import binascii
 class CardReader():
     '''docstring
     ・カードリーダークラス
-    ・Felicaを検知したらIDmを返す
     '''
     def __init__(self):
-        self.idm = 0
+        self.idm = ""
     def on_startup(self,targets):
         for target in targets:
             target.sensef_req = bytearray.fromhex("0000030000")
