@@ -44,10 +44,7 @@ func executeSesame3(signPtr, apiPtr, uuidPtr *C.char) {
 	api := C.GoString(apiPtr)
 	uuid := C.GoString(uuidPtr)
 	// fetchStatusでは鍵の状態を読みこんでいる
-	// fetchStatusの戻り値はバイト列
-	statusResponse := fetchStatus(api, uuid)
-	// 鍵の状態のみをkey_statusとして取り出す
-	key_status := string(statusResponse.CHSesame2Status)
+	key_status := fetchStatus(api, uuid)
 	//executeLockで施錠を、executeUnlockで解錠を行う
 	if isUnlocked(key_status) {
 		fmt.Println("Key is " + key_status + ". Locking ...")
@@ -66,7 +63,7 @@ func isUnlocked(status string) bool {
 }
 
 //export fetchStatus
-func fetchStatus(api, uuid string) ResponseBody {
+func fetchStatus(api, uuid string) string {
 	// candyhouse公式(https://doc.candyhouse.co/ja/SesameAPI)に記載されているurlを準備する
 	fetchUrl := rootUrl + uuid
 	req, err := http.NewRequest("GET", fetchUrl, nil)
@@ -86,7 +83,8 @@ func fetchStatus(api, uuid string) ResponseBody {
 	if err := json.Unmarshal(respbody, &statusResponse); err != nil {
 		fmt.Println("JSON Unmarshal error:", err)
 	}
-	return statusResponse
+	key_status := string(statusResponse.CHSesame2Status)
+	return key_status
 }
 
 //export executeUnlock
