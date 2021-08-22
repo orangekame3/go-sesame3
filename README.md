@@ -1,11 +1,12 @@
 # go-sesame3
 セサミ３のAPIをたたくクライアントアプリ
+
 cgoを使ってpythonからgolangを呼び出しています。
 
 ## 開発環境
-wsl2上で
-goのバージョンは`go version go1.16.6 linux/amd64`
-pythonのバージョンは`Python 3.8.10`
+- wsl2
+- `go version go1.16.6 linux/amd64`
+- `Python 3.8.10`
 
 使用する外部モジュールは
 - nfcpy
@@ -33,20 +34,20 @@ pythonのバージョンは`Python 3.8.10`
 └── notify.wav
 ```
 
-使用方法
+## 使用方法
 上記環境を整えたうえで`export`配下で
 ```bash
 $ go build -buildmode=c-shared -o export.so
 ```
 を実行してください。
-export配下にファイルが出力されます。
-デフォルトでは相対パスで一つ上の階層の.envファイルから環境変数を参照しています。
-一つ上の階層に.envファイルを作成してSECRET＿KEY、API＿TOKEN、UUID、を登録します。
-ANDOROID、SUICAはそれぞれFelicaのIDmなので、適当な数値を入れておきます。
-`go-sesame3`直下で
+export配下にファイルが出力されます。\
+デフォルトでは相対パスで一つ上の階層の.envファイルから環境変数を参照しています。\
+一つ上の階層に.envファイルを作成してSECRET＿KEY、API＿TOKEN、UUID、を登録します。\
+ANDOROID、SUICAはそれぞれFelicaのIDmなので、適当な数値を入れておきます。\
+`go-sesame3`直下で\
 ```bash
 sudo python3 main.py
 ```
-でプログラムが起動します。
-この状態でカードリーダーに登録したいカードをかざすとコンソール上にバイト列を返します。
+でプログラムが起動します。\
+この状態でカードリーダーに登録したいカードをかざすとコンソール上にバイト列を返します。\
 数値部分のみを.envのANDOROIDもしくはSUICAに格納して保存すると、次回起動時に利用することができます。
