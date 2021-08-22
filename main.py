@@ -11,10 +11,10 @@ import subprocess
 from nfc_connect import CardReader
 
 # 環境変数の読み込みにはpython-dotenvを使用している
-# 事故が起きないように.envファイルはhomeディレクトリ配下に置く
-#HOME = os.environ['~']
+# 事故が起きないように.envファイルはhomeディレクトリもしくは相対パスで指定する
+#HOME = os.environ['HOME']
+# load_dotenv(HOME+'.env')
 load_dotenv('../.env')
-#load_dotenv()
 SECRET_KEY = os.environ["SECRET_KEY"]
 API_TOKEN = os.environ["API_TOKEN"]
 UUID = os.environ["UUID"]
@@ -56,11 +56,10 @@ def ismyID(id):
 if __name__ == '__main__':
 
      mySesame3 = MySesame3()
-     
      try:
         while True:
-            myreader = CardReader()
             # nfcpyによるNFC入力待機
+            myreader = CardReader()
             myreader.read_id()
             detectedID = myreader.idm
             # NFCの入力を検知したらスピーカーから通知音を出す
@@ -73,6 +72,7 @@ if __name__ == '__main__':
                 mySesame3.lockOrunlock()
                 detectedID = 0
             sleep(2)
+
      except KeyboardInterrupt:
         print("KeyboardInterrupt!!")
        
