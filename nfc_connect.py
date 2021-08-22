@@ -19,9 +19,6 @@ class CardReader():
     def read_id(self):
         clf = nfc.ContactlessFrontend('usb')
         print("Waiting Felica...")
-        try:
-            clf.connect(rdwr = {'targets':['212F'],'on-startup':self.on_startup,'on-connect':self.on_connect})
-            print(str(self.idm))
-            clf.close()
-        except KeyboardInterrupt:
-            print("KeyboardInterrupt!!")
+        clf.connect(rdwr = {'targets':['212F'],'on-startup':self.on_startup,'on-connect':self.on_connect})
+        print(str(self.idm))
+        clf.close()
