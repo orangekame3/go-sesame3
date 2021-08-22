@@ -1,5 +1,5 @@
 # gopy-sesame3
-セサミ３のAPIをたたくクライアントアプリ
+Sesame3のAPIをたたくクライアントアプリ
 
 cgoを使ってpythonからgolangを呼び出しています。
 
@@ -30,7 +30,7 @@ cgoを使ってpythonからgolangを呼び出しています。
 │   ├── export.so
 │   └── go.mod
 ├── main.py
-├── nfc_connect.py
+├── nfcreader.py
 └── notify.wav
 ```
 
