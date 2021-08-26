@@ -10,11 +10,26 @@ from dotenv import load_dotenv
 import subprocess
 from nfcreader import CardReader
 
+<<<<<<< HEAD
 # 環境変数の読み込みにはpython-dotenvを使用している
 # 事故が起きないように.envファイルはhomeディレクトリもしくは相対パスで指定する
 #HOME = os.environ['HOME']
 # load_dotenv(HOME+'.env')
 load_dotenv('../.env')
+=======
+class go_string(Structure):
+    _fields_ = [("p", c_char_p),("n", c_int)]
+#GO言語用string変換
+
+def GoString(s):
+    u=s.encode('utf-8')
+    return go_string(c_char_p(u), len(u))
+
+
+print(os.environ['HOME'])
+HOME = os.environ['HOME']
+load_dotenv(HOME+'/.env')
+>>>>>>> 87391ae (update)
 SECRET_KEY = os.environ["SECRET_KEY"]
 API_TOKEN = os.environ["API_TOKEN"]
 UUID = os.environ["UUID"]
