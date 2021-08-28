@@ -7,8 +7,13 @@ import struct
 from time import sleep
 import os
 from dotenv import load_dotenv
+<<<<<<< HEAD
 import subprocess
 from nfcreader import CardReader
+=======
+#import nfc_connect
+#import subprocessa
+>>>>>>> b26ebbe (update)
 
 <<<<<<< HEAD
 # 環境変数の読み込みにはpython-dotenvを使用している
